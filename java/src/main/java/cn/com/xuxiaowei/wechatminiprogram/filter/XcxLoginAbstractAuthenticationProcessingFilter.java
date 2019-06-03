@@ -119,12 +119,10 @@ public class XcxLoginAbstractAuthenticationProcessingFilter extends AbstractAuth
                 wxMaUserInfo.setOpenId(openid);
                 wxMaUserInfo.setUnionId(unionid);
 
-                session.setAttribute("openid", openid);
-
                 // 将用户信息放入 Session
                 // 登录时，只能获取到 OpenID、会话密钥 sessionKey 以及 UnionID（只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。）
                 // 后面将设置用户昵称等信息
-                session.setAttribute(openid, wxMaUserInfo);
+                session.setAttribute("wxMaUserInfo", wxMaUserInfo);
             }
 
             //////////////////  ////////////////////

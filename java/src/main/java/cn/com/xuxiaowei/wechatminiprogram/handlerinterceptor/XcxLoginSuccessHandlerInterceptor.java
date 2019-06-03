@@ -36,9 +36,7 @@ public class XcxLoginSuccessHandlerInterceptor implements HandlerInterceptor {
 
             session.setAttribute("loginSuccess", null);
 
-            String openid = (String) session.getAttribute("openid");
-
-            WxMaUserInfo wxMaUserInfo = (WxMaUserInfo) session.getAttribute(openid);
+            WxMaUserInfo wxMaUserInfo = (WxMaUserInfo) session.getAttribute("wxMaUserInfo");
 
             // 响应数据
             Map<String, Object> map = new HashMap<>(4);
