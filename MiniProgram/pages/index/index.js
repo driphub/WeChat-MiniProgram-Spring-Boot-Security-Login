@@ -62,11 +62,23 @@ Page({
       url: 'http://127.0.0.1/userInfo/update.do',
       data: userInfo,
       success: res => {
-        console.log(res)
-        console.log(res.data)
-        console.log(res.data.code)
-        console.log(res.data.msg)
-        console.log(res.data.data)
+
+        var code = res.data.code;
+        var msg = res.data.msg;
+        var data = res.data.data;
+        var wxMaUserInfo = data.wxMaUserInfo;
+
+        if (code == 0) {
+
+          console.log(wxMaUserInfo)
+
+          wx.showToast({
+            title: msg,
+            icon: 'success',
+            duration: 2000
+          })
+
+        }
       }
     })
 
