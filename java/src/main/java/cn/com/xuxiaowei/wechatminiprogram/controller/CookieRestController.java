@@ -21,7 +21,7 @@ public class CookieRestController {
     /**
      * 响应 Cookie，用户微信小程序登录前，Spring Boot 创建 Session 并响应给小程序 Cookie
      */
-    @RequestMapping("/getCookice.do")
+    @RequestMapping("/getCookie.do")
     public Map<String, Object> getCookie(HttpServletRequest request, HttpServletResponse response) {
 
         Map<String, Object> map = new HashMap<>(4);
