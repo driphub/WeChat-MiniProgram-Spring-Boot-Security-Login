@@ -46,15 +46,36 @@ public class UserInfoRestController {
      * <p>
      * 此方法在用户是首次同意授权后进行，如需测试此方法，请清理 授权数据或全部清理
      *
-     * @param encryptedData
-     * @param iv
-     * @param rawData
+     * @param encryptedData 包括敏感数据在内的完整用户信息的加密数据，详细见 加密数据解密算法
+     *                      https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/signature.html#%E5%8A%A0%E5%AF%86%E6%95%B0%E6%8D%AE%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95
+     * @param iv            加密算法的初始向量，详细见 加密数据解密算法
+     *                      https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/signature.html#%E5%8A%A0%E5%AF%86%E6%95%B0%E6%8D%AE%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95
+     * @param nickName      昵称
+     * @param gender        性别
+     * @param country       国家
+     * @param province      省份
+     * @param city          城市
+     * @param avatarUrl     头像
+     * @param language      语言
      */
     @RequestMapping("/update.do")
     public Map<String, Object> getCookie(HttpServletRequest request, HttpServletResponse response,
-                                         String encryptedData, String iv, String rawData) {
+                                         String encryptedData, String iv,
+                                         String nickName, String gender,
+                                         String country, String province, String city,
+                                         String avatarUrl,
+                                         String language) {
 
-        log.debug("前台发送的用户信息为：" + rawData);
+        log.debug("前台发送的用户信息（不需要解密）为：");
+        log.debug("昵称：" + nickName);
+        log.debug("性别：" + gender);
+        log.debug("国家：" + country);
+        log.debug("省份：" + province);
+        log.debug("城市：" + city);
+        log.debug("头像：" + avatarUrl);
+        log.debug("语言：" + language);
+
+        ////////////////////////////// 下面是通过解密得到用户数据 //////////////////////////////
 
         Map<String, Object> map = new HashMap<>(4);
         Map<String, Object> data = new HashMap<>(4);

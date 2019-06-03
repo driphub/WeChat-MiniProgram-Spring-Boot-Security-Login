@@ -49,17 +49,18 @@ Page({
     ////////////////////////////// 获取用户详细信息开始 //////////////////////////////
 
     var detail = e.detail;
+    var userInfo = detail.userInfo;
+
+    // 装载数据
+    userInfo.encryptedData = detail.encryptedData;
+    userInfo.iv = detail.iv;
 
     // 将用户详细信息发送到后台进行保存（仅在第一次微信授权时进行，如需测试本连接，请清理 授权数据或全部清理）
-    // 方式一：可通过 e.detail.rawData 直接将用户的详细信息（String）发送到后台进行保存
+    // 方式一：可通过 e.detail.userInfo 直接将用户的详细信息发送到后台进行保存
     // 方式二：使用 appId、secret、encryptedData、iv、sessionKey 进行解密
     wx.request({
       url: 'http://127.0.0.1/userInfo/update.do',
-      data: {
-        encryptedData: detail.encryptedData,
-        iv: detail.iv,
-        rawData: detail.rawData
-      },
+      data: userInfo,
       success: res => {
         console.log(res)
         console.log(res.data)
