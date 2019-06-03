@@ -34,4 +34,4 @@
     
 ## 其他依赖（创建项目时不可选）
 
-- 
+- weixin-java-miniapp			微信小程序 Java SDK

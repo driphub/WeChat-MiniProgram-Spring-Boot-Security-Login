@@ -16,9 +16,25 @@
 
     <properties>
         <java.version>1.8</java.version>
+
+
+        <!-- 微信小程序 Java SDK -->
+        <!-- https://mvnrepository.com/artifact/com.github.binarywang/weixin-java-miniapp -->
+        <!-- 2019年5月18日 -->
+        <weixin-java-miniapp.version>3.4.0</weixin-java-miniapp.version>
+
+
     </properties>
 
     <dependencies>
+
+
+        <!-- 微信小程序 Java SDK -->
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-miniapp</artifactId>
+            <version>${weixin-java-miniapp.version}</version>
+        </dependency>
 
 
         <!-- 以上为项目自定义依赖 -->
