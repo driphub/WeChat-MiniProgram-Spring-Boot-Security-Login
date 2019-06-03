@@ -1,6 +1,6 @@
 //app.js
 App({
-  onLaunch: function () {
+  onLaunch: function() {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -10,6 +10,34 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+
+        ////////////////////////////// 登录开始 //////////////////////////////
+
+        var code = res.code;
+
+        // 首先建立连接，获取 Session Cookie
+        // 注意这里的 res 的范围
+        wx.request({
+          url: 'http://127.0.0.1/cookie/getCookie.do',
+          success: res => {
+            
+            // 建立连接后登陆
+            wx.request({
+              url: 'http://127.0.0.1/xcx/login.do',
+              data:{
+                code: code
+              },
+              success: res => {
+                console.log(res.data.code)
+                console.log(res.data.msg)
+                console.log(res.data.data)
+              }
+            })
+          }
+        })
+
+      ////////////////////////////// 登录结束 //////////////////////////////
+
       }
     })
     // 获取用户信息
