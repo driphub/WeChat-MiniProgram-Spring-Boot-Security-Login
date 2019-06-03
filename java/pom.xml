@@ -24,6 +24,12 @@
         <weixin-java-miniapp.version>3.4.0</weixin-java-miniapp.version>
 
 
+        <!-- Fastjson -->
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <!-- 2019年5月3日 -->
+        <fastjson.version>1.2.58</fastjson.version>
+
+
     </properties>
 
     <dependencies>
@@ -34,6 +40,14 @@
             <groupId>com.github.binarywang</groupId>
             <artifactId>weixin-java-miniapp</artifactId>
             <version>${weixin-java-miniapp.version}</version>
+        </dependency>
+
+
+        <!-- Fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
         </dependency>
 
 
