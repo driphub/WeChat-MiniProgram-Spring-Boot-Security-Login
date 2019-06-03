@@ -29,6 +29,9 @@
 	
 - Web
     - Web                       使用Tomcat和Spring MVC进行全栈Web开发
+	
+- Template
+	- Thymeleaf             	Thymeleaf模板引擎（页面）
     
 - Security
     - Security                  通过spring-security保护您的应用程序
