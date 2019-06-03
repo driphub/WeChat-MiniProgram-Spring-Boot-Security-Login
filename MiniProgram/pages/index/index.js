@@ -50,17 +50,15 @@ Page({
 
     var detail = e.detail;
 
-    var encryptedData = detail.encryptedData;
-    var iv = detail.iv;
-    var signature = detail.signature;
-
     // 将用户详细信息发送到后台进行保存（仅在第一次微信授权时进行，如需测试本连接，请清理 授权数据或全部清理）
+    // 方式一：可通过 e.detail.rawData 直接将用户的详细信息（String）发送到后台进行保存
+    // 方式二：使用 appId、secret、encryptedData、iv、sessionKey 进行解密
     wx.request({
       url: 'http://127.0.0.1/userInfo/update.do',
       data: {
-        encryptedData:encryptedData,
-        iv: iv,
-        signature: signature
+        encryptedData: detail.encryptedData,
+        iv: detail.iv,
+        rawData: detail.rawData
       },
       success: res => {
         console.log(res)
