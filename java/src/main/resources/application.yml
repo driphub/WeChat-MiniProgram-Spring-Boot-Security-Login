@@ -8,3 +8,11 @@ logging:
   level:
     web: debug
     cn.com.xuxiaowei: debug
+#
+# 微信小程序配置
+wx:
+  miniapp:
+    # 微信小程序的appid
+    appid:
+    # 微信小程序的Secret
+    secret:
