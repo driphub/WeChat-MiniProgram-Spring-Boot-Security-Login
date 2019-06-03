@@ -44,7 +44,7 @@ public class XcxLoginSuccessHandlerInterceptor implements HandlerInterceptor {
             map.put("data", data);
 
             map.put("code", 0);
-            map.put("msg", "微信小程序登录成功");
+            map.put("msg", "登录成功");
             data.put("wxMaUserInfo", wxMaUserInfo);
             log.debug(map.toString());
 
