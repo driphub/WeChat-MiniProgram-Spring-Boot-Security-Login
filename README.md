@@ -38,7 +38,7 @@
 
 - weixin-java-miniapp           微信小程序 Java SDK。[WxJava](https://github.com/Wechat-Group/WxJava)
 
-- Fastjson                      阿里巴巴 JSON
+- Fastjson                      阿里巴巴 JSON（非必须）
 
 - weapp-cookie					小程序原生的 request 网络请求接口并不支持传统的 Cookie，
 								但有时候我们现有的后端接口确于依赖 Cookie（比如服务器用户登录态），
