@@ -26,23 +26,46 @@ App({
         wx.request({
           url: 'http://127.0.0.1/cookie/getCookie.do',
           success: res => {
-            
+
             // 建立连接后登陆
             wx.request({
               url: 'http://127.0.0.1/xcx/login.do',
-              data:{
+              data: {
                 code: code
               },
               success: res => {
-                console.log(res.data.code)
-                console.log(res.data.msg)
-                console.log(res.data.data)
+
+                var code = res.data.code;
+                var msg = res.data.msg;
+                var data = res.data.data;
+                var wxMaUserInfo = data.wxMaUserInfo;
+
+                if (code == 0) {
+                  
+                  console.log(wxMaUserInfo)
+
+                  wx.showToast({
+                    title: msg,
+                    icon: 'success',
+                    duration: 2000
+                  })
+                  
+                  setTimeout(function() {
+                    wx.showToast({
+                      title: '但只能获取到用户OpenID',
+                      icon: 'none',
+                      duration: 2000
+                    })
+                  }, 2000);
+
+                }
+
               }
             })
           }
         })
 
-      ////////////////////////////// 登录结束 //////////////////////////////
+        ////////////////////////////// 登录结束 //////////////////////////////
 
       }
     })
