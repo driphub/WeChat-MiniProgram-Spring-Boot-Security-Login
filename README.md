@@ -24,6 +24,9 @@
 - Core
     - Lombok                    注解（Getter/Setter）。
     - Configuration Processor   为您的自定义配置键生成元数据（注解处理器）。
+	
+- Web
+    - Web                       使用Tomcat和Spring MVC进行全栈Web开发
     
 - Security
     - Security                  通过spring-security保护您的应用程序
