@@ -13,8 +13,8 @@
 
 # WeChat-MiniProgram-Spring-Boot-Security-Login
 - 微信小程序集成 Spring Boot Security 登录鉴权。
-- 微信小程序集成 weapp-cookie，一行代码为你的小程序实现 Cookie 机制。GitHub：https://github.com/charleslo1/weapp-cookie
-- 微信小程序集成 weixin-java-miniapp 微信开发 Java SDK。GitHub：https://github.com/Wechat-Group/WxJava
+- 微信小程序集成 weapp-cookie，一行代码为你的小程序实现 Cookie 机制。[weapp-cookie](https://github.com/charleslo1/weapp-cookie)
+- 微信小程序集成 weixin-java-miniapp 微信开发 Java SDK。[WxJava](https://github.com/Wechat-Group/WxJava)
 
 # 依赖
 
@@ -36,11 +36,11 @@
     
 ## 其他依赖（创建项目时不可选）
 
-- weixin-java-miniapp           微信小程序 Java SDK
+- weixin-java-miniapp           微信小程序 Java SDK。[WxJava](https://github.com/Wechat-Group/WxJava)
 
 - Fastjson                      阿里巴巴 JSON
 
 - weapp-cookie					小程序原生的 request 网络请求接口并不支持传统的 Cookie，
 								但有时候我们现有的后端接口确于依赖 Cookie（比如服务器用户登录态），
 								这个库可用一行代码为你的小程序实现 Cookie 机制，以保证基于 cookie 的服务会话不会失效，与 web 端共用会话机制
-								GitHub：https://github.com/charleslo1/weapp-cookie
+								[weapp-cookie](https://github.com/charleslo1/weapp-cookie)
