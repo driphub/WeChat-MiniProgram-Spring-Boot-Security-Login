@@ -1,4 +1,4 @@
-package cn.com.xuxiaowei.wechatminiprogram.setting;
+package cn.com.xuxiaowei.wechatminiprogram.propertie;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
