@@ -106,22 +106,20 @@ public class XcxLoginAbstractAuthenticationProcessingFilter extends AbstractAuth
 
             HttpSession session = request.getSession();
 
-            // 用户存放用户数据
-            WxMaUserInfo wxMaUserInfo;
-
             // 根据 微信 OpenID，查看用户是否登陆了
             // 开发、生产为数据库中的数据，这里仅为了方便演示
             Object wxMaUserInfoObj = session.getAttribute(openid);
 
-            if (wxMaUserInfoObj instanceof WxMaUserInfo) {
-                // 已登录，重复登录
-                wxMaUserInfo = (WxMaUserInfo) wxMaUserInfoObj;
-            } else {
-                // 未登录
-                wxMaUserInfo = new WxMaUserInfo();
+            // 未登录
+            if (!(wxMaUserInfoObj instanceof WxMaUserInfo)) {
+
+                // 用户存放用户数据
+                WxMaUserInfo wxMaUserInfo = new WxMaUserInfo();
 
                 wxMaUserInfo.setOpenId(openid);
                 wxMaUserInfo.setUnionId(unionid);
+
+                session.setAttribute("openid", openid);
 
                 // 将用户信息放入 Session
                 // 登录时，只能获取到 OpenID、会话密钥 sessionKey 以及 UnionID（只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。）
@@ -134,6 +132,7 @@ public class XcxLoginAbstractAuthenticationProcessingFilter extends AbstractAuth
             List<GrantedAuthority> authorities = new ArrayList<>();
 
             // 给一个权限
+            // 此时包含：ROLE_
             authorities.add(new SimpleGrantedAuthority("ROLE_WECHATXCX"));
 
             // 注意此时的类型 org.springframework.security.core.userdetails.User
@@ -156,11 +155,8 @@ public class XcxLoginAbstractAuthenticationProcessingFilter extends AbstractAuth
 
             //////////////////  ////////////////////
 
-            map.put("code", 0);
-            map.put("msg", "微信小程序登录成功");
-            data.put("wxMaUserInfo", wxMaUserInfo);
-            log.debug(map.toString());
-            ResponseUtils.response(response, map);
+            // 仅使用一次
+            session.setAttribute("loginSuccess", true);
 
             // 返回验证结果
             return this.getAuthenticationManager().authenticate(authRequest);
