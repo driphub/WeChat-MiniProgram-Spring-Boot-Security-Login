@@ -15,13 +15,13 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
+  onLoad: function() {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
+    } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -45,6 +45,34 @@ Page({
   },
   getUserInfo: function(e) {
     console.log(e)
+
+    ////////////////////////////// 获取用户详细信息开始 //////////////////////////////
+
+    var detail = e.detail;
+
+    var encryptedData = detail.encryptedData;
+    var iv = detail.iv;
+    var signature = detail.signature;
+
+    // 将用户详细信息发送到后台进行保存（仅在第一次微信授权时进行，如需测试本连接，请清理 授权数据或全部清理）
+    wx.request({
+      url: 'http://127.0.0.1/userInfo/update.do',
+      data: {
+        encryptedData:encryptedData,
+        iv: iv,
+        signature: signature
+      },
+      success: res => {
+        console.log(res)
+        console.log(res.data)
+        console.log(res.data.code)
+        console.log(res.data.msg)
+        console.log(res.data.data)
+      }
+    })
+
+    ////////////////////////////// 获取用户详细信息结束 //////////////////////////////
+
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
