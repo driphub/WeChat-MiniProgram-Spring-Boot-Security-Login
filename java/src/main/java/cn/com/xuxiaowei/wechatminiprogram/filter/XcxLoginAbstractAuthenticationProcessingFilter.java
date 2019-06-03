@@ -2,6 +2,7 @@ package cn.com.xuxiaowei.wechatminiprogram.filter;
 
 import cn.binarywang.wx.miniapp.api.impl.WxMaServiceImpl;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
+import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
 import cn.binarywang.wx.miniapp.config.WxMaInMemoryConfig;
 import cn.com.xuxiaowei.wechatminiprogram.propertie.WxMaProperties;
 import cn.com.xuxiaowei.wechatminiprogram.util.response.ResponseUtils;
@@ -22,6 +23,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,15 +95,41 @@ public class XcxLoginAbstractAuthenticationProcessingFilter extends AbstractAuth
             log.debug("用户登录信息：" + wxMaJscode2SessionResult);
             log.debug("");
 
+
             // 普通用户的标识，对当前开发者帐号唯一
             String openid = wxMaJscode2SessionResult.getOpenid();
             // 只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。
             String unionid = wxMaJscode2SessionResult.getUnionid();
             String sessionKey = wxMaJscode2SessionResult.getSessionKey();
 
-
             //////////////////  ////////////////////
 
+            HttpSession session = request.getSession();
+
+            // 用户存放用户数据
+            WxMaUserInfo wxMaUserInfo;
+
+            // 根据 微信 OpenID，查看用户是否登陆了
+            // 开发、生产为数据库中的数据，这里仅为了方便演示
+            Object wxMaUserInfoObj = session.getAttribute(openid);
+
+            if (wxMaUserInfoObj instanceof WxMaUserInfo) {
+                // 已登录，重复登录
+                wxMaUserInfo = (WxMaUserInfo) wxMaUserInfoObj;
+            } else {
+                // 未登录
+                wxMaUserInfo = new WxMaUserInfo();
+
+                wxMaUserInfo.setOpenId(openid);
+                wxMaUserInfo.setUnionId(unionid);
+
+                // 将用户信息放入 Session
+                // 登录时，只能获取到 OpenID、会话密钥 sessionKey 以及 UnionID（只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。）
+                // 后面将设置用户昵称等信息
+                session.setAttribute(openid, wxMaUserInfo);
+            }
+
+            //////////////////  ////////////////////
 
             List<GrantedAuthority> authorities = new ArrayList<>();
 
@@ -111,13 +139,11 @@ public class XcxLoginAbstractAuthenticationProcessingFilter extends AbstractAuth
             // 注意此时的类型 org.springframework.security.core.userdetails.User
             org.springframework.security.core.userdetails.User user = new org.springframework.security.core.userdetails.User(openid, sessionKey, authorities);
 
+            // IP、Session
             WebAuthenticationDetails details = null;
-
             SecurityContext context = SecurityContextHolder.getContext();
             Authentication authentication = context.getAuthentication();
-
             Object detailsObj = authentication.getDetails();
-
             if (detailsObj instanceof WebAuthenticationDetails) {
                 details = (WebAuthenticationDetails) detailsObj;
             }
@@ -127,8 +153,12 @@ public class XcxLoginAbstractAuthenticationProcessingFilter extends AbstractAuth
             // authorities  权限
             UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(user, details, authorities);
 
+
+            //////////////////  ////////////////////
+
             map.put("code", 0);
             map.put("msg", "微信小程序登录成功");
+            data.put("wxMaUserInfo", wxMaUserInfo);
             log.debug(map.toString());
             ResponseUtils.response(response, map);
 
