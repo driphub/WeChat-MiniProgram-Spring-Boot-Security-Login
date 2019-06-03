@@ -102,6 +102,8 @@ public class XcxLoginAbstractAuthenticationProcessingFilter extends AbstractAuth
             String unionid = wxMaJscode2SessionResult.getUnionid();
             String sessionKey = wxMaJscode2SessionResult.getSessionKey();
 
+            ////////////////// 获取到 OpenID 后，应查询数据库 ////////////////////
+
             //////////////////  ////////////////////
 
             HttpSession session = request.getSession();
