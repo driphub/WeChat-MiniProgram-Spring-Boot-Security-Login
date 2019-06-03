@@ -1,4 +1,4 @@
-package cn.com.xuxiaowei.wechatminiprogram.config;
+package cn.com.xuxiaowei.wechatminiprogram.config.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
