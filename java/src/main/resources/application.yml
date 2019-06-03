@@ -1,0 +1,10 @@
+# 服务器 配置
+server:
+  # 服务器 端口
+  port: 80
+#
+# 日志 配置
+logging:
+  level:
+    web: debug
+    cn.com.xuxiaowei: debug
