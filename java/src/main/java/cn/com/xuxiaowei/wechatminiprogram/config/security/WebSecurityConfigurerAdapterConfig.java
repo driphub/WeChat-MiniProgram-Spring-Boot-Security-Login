@@ -20,6 +20,10 @@ public class WebSecurityConfigurerAdapterConfig extends WebSecurityConfigurerAda
         // 这里重写，禁用了账户名密码登录
         // <code>super.configure(http);</code>
 
+        // 用户详细信息操作，需要授权通过
+        // 此时不能包含：ROLE_
+        http.authorizeRequests().antMatchers("/userInfo/**").hasRole("WECHATXCX");
+
     }
 
     @Override
