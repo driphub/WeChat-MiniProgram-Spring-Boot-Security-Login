@@ -22,7 +22,6 @@ import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,9 +57,6 @@ public class XcxLoginAbstractAuthenticationProcessingFilter extends AbstractAuth
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
-
-        // 创建 Session，用于响应 Cookie
-        HttpSession session = request.getSession();
 
         // 响应数据
         Map<String, Object> map = new HashMap<>(4);
