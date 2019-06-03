@@ -49,10 +49,10 @@ App({
                     icon: 'success',
                     duration: 2000
                   })
-                  
+
                   setTimeout(function() {
                     wx.showToast({
-                      title: '但只能获取到用户OpenID',
+                      title: '仅能获取到OpenID',
                       icon: 'none',
                       duration: 2000
                     })
