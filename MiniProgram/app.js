@@ -21,7 +21,7 @@ App({
 
         var code = res.code;
 
-        // 首先建立连接，获取 Session Cookie
+        // 重要提示：首先建立一次连接，获取 Session Cookie，直接登录不能保持登录。此URL中，仅需要创建一个Session即可。
         // 注意这里的 res 的范围
         wx.request({
           url: 'http://127.0.0.1/cookie/getCookie.do',
