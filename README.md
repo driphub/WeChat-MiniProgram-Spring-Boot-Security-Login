@@ -13,7 +13,8 @@
 
 # WeChat-MiniProgram-Spring-Boot-Security-Login
 - 微信小程序集成 Spring Boot Security 登录。
-- 微信小程序集成 weapp-cookie，一行代码为你的小程序实现 Cookie 机制。
+- 微信小程序集成 weapp-cookie，一行代码为你的小程序实现 Cookie 机制。GitHub：https://github.com/charleslo1/weapp-cookie。
+- 微信小程序集成 weixin-java-miniapp 微信开发 Java SDK。https://github.com/Wechat-Group/WxJava
 
 # 依赖
 
