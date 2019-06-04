@@ -14,11 +14,12 @@
   <view>2、请在application.yml中设置自己的appid、secret</view>
   <view>3、为了开发方便，该项目未效验合法域名</view>
   <view>4、小程序原生的 request 网络请求接口并不支持传统的 Cookie，但有时候我们现有的后端接口确于依赖 Cookie（比如服务器用户登录态），这个库可用一行代码为你的小程序实现 Cookie 机制，以保证基于 cookie 的服务会话不会失效，与 web 端共用会话机制。仅需在app.js中引入weapp-cookie。GitHub：https://github.com/charleslo1/weapp-cookie</view>
-  <view>5、打开小程序自动登录</view>
-  <view>6、自动登录仅能获取到用户的OpenID</view>
-  <view>7、当且仅当首次授权后，后台获取用户详细信息</view>
-  <view>8、请在首次授权后，保存用户的详细信息</view>
-  <view>9、如需测试后台回去用户详细信息，请清理 授权数据或全部清理</view>
-  <view>10、使用浏览器访问http://127.0.0.1/userInfo/update.do，显示403（无权限访问）,微信小程序可访问，表示已保持登录</view>
-  <view>11、请使用weui-wxss，已在app.wxss中引入。GitHub：https://github.com/weui/weui-wxss</view>
+  <view>5、提交POST请禁用CSRF，参见 WebSecurityConfigurerAdapterConfig </view>
+  <view>6、打开小程序自动登录</view>
+  <view>7、自动登录仅能获取到用户的OpenID</view>
+  <view>8、当且仅当首次授权后，后台获取用户详细信息</view>
+  <view>9、请在首次授权后，保存用户的详细信息</view>
+  <view>10、如需测试后台回去用户详细信息，请清理 授权数据或全部清理</view>
+  <view>11、使用浏览器访问http://127.0.0.1/userInfo/update.do，显示403（无权限访问）,微信小程序可访问，表示已保持登录</view>
+  <view>12、请使用weui-wxss，已在app.wxss中引入。GitHub：https://github.com/weui/weui-wxss</view>
 </view>

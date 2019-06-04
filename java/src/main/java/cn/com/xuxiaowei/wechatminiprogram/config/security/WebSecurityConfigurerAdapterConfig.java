@@ -24,6 +24,9 @@ public class WebSecurityConfigurerAdapterConfig extends WebSecurityConfigurerAda
         // 此时不能包含：ROLE_
         http.authorizeRequests().antMatchers("/userInfo/**").hasRole("WECHATXCX");
 
+        // 提交 POST
+        http.csrf().disable();
+
     }
 
     @Override
